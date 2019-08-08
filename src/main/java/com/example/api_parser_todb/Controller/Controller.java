@@ -1,12 +1,15 @@
 package com.example.api_parser_todb.Controller;
 
 import com.example.api_parser_todb.Country.Country;
+import com.example.api_parser_todb.Repository.CountryRepository;
+import com.example.api_parser_todb.Service.CountryService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import kong.unirest.HttpResponse;
 import kong.unirest.JsonNode;
 import kong.unirest.Unirest;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,6 +20,10 @@ import java.io.IOException;
 @org.springframework.stereotype.Controller
 public class Controller {
 
+    @Autowired
+    CountryService countryService;
+    @Autowired
+    CountryRepository countryRepository;
 
     @RequestMapping(path="/request",method = RequestMethod.GET)
     public String request(Model model) throws IOException {
@@ -34,6 +41,16 @@ public class Controller {
         Country country;
         country = mapper.readValue(json.get(0).toString(), Country.class);
         System.out.println(country.toString());
+        //countryRepository.save(country);
+        String name="Nor";
+        System.out.println(countryService.findInfoAboutCountry(name));
+        switch (countryService.findInfoAboutCountry(name)) {
+            case 2: System.out.println("case 2"+ countryRepository.findByName(name)); break;
+            case 1: System.out.println("case 1"+ countryRepository.findByName(name)); break;
+            case 0: System.out.println("case 0 "+ countryRepository.findByNativeName(name)); break;
+            case -1:countryRepository.save(country); break;
+        }
+
         return "main";
     }
 }

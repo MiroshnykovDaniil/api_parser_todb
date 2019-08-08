@@ -1,14 +1,21 @@
 package com.example.api_parser_todb.Country;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.example.api_parser_todb.Repository.CountryRepository;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import javax.persistence.*;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -35,55 +42,95 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "translations",
         "relevance"
 })
+@Entity
 public class Country {
 
+
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    public int getId(){
+        return id;
+    }
+    public void setId(int id){
+        this.id=id;
+    }
+
+    @Column(name = "name")
     @JsonProperty("name")
     private String name;
-    @JsonProperty("topLevelDomain")
-    private List<String> topLevelDomain = null;
-    @JsonProperty("alpha2Code")
-    private String alpha2Code;
-    @JsonProperty("alpha3Code")
-    private String alpha3Code;
-    @JsonProperty("callingCodes")
-    private List<String> callingCodes = null;
-    @JsonProperty("capital")
-    private String capital;
-    @JsonProperty("altSpellings")
-    private List<String> altSpellings = null;
-    @JsonProperty("region")
-    private String region;
-    @JsonProperty("subregion")
-    private String subregion;
-    @JsonProperty("population")
-    private int population;
-    @JsonProperty("latlng")
-    private List<Double> latlng = null;
-    @JsonProperty("demonym")
-    private String demonym;
-    @JsonProperty("area")
-    private double area;
-    @JsonProperty("gini")
-    private double gini;
-    @JsonProperty("timezones")
-    private List<String> timezones = null;
-    @JsonProperty("borders")
-    private List<String> borders = null;
-    @JsonProperty("nativeName")
-    private String nativeName;
-    @JsonProperty("numericCode")
-    private String numericCode;
-    @JsonProperty("currencies")
-    private List<String> currencies = null;
-    @JsonProperty("languages")
-    private List<String> languages = null;
-    @JsonProperty("translations")
-    private Translations translations;
-    @JsonProperty("relevance")
-    private String relevance;
-    @JsonIgnore
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+    @JsonProperty("topLevelDomain")    @Column(name="topLevelDomain") @ElementCollection
 
+    private List<String> topLevelDomain = null;
+    @JsonProperty("alpha2Code")    @Column(name="alpha2Code")
+
+    private String alpha2Code;
+    @JsonProperty("alpha3Code")    @Column(name="alpha3Code")
+
+    private String alpha3Code;
+    @JsonProperty("callingCodes")    @Column(name="callingCodes") @ElementCollection
+
+    private List<String> callingCodes = null;
+    @JsonProperty("capital")    @Column(name="capital")
+
+    private String capital;
+    @JsonProperty("altSpellings")    @Column(name="altSpellings") @ElementCollection
+
+    private List<String> altSpellings = null;
+    @JsonProperty("region")    @Column(name="region")
+
+    private String region;
+    @JsonProperty("subregion")    @Column(name="subregion")
+
+    private String subregion;
+    @JsonProperty("population")    @Column(name="population")
+
+    private int population;
+    @JsonProperty("latlng")    @Column(name="latlng") @ElementCollection
+
+    private List<Double> latlng = null;
+    @JsonProperty("demonym")    @Column(name="demonym")
+
+    private String demonym;
+    @JsonProperty("area")    @Column(name="area")
+
+    private double area;
+    @JsonProperty("gini")    @Column(name="gini")
+
+    private double gini;
+    @JsonProperty("timezones")    @Column(name="timezones") @ElementCollection
+
+    private List<String> timezones = null;
+    @JsonProperty("borders")    @Column(name="borders") @ElementCollection
+
+    private List<String> borders = null;
+    @JsonProperty("nativeName")    @Column(name="nativeName")
+
+    private String nativeName;
+    @JsonProperty("numericCode")    @Column(name="numericCode")
+
+    private String numericCode;
+    @JsonProperty("currencies")    @Column(name="currencies") @ElementCollection
+
+    private List<String> currencies = null;
+    @JsonProperty("languages")    @Column(name="languages") @ElementCollection
+
+    private List<String> languages = null;
+    @JsonProperty("translations")    @Column(name="translations")
+
+    @Embedded
+    private Translations translations;
+    @JsonProperty("relevance")    @Column(name="relevance")
+
+    private String relevance;
+
+    /*
+    @JsonIgnore
+    @ElementCollection
+    private Map<String, Object> additionalProperties; //= new HashMap<String, Object>();
+*/
     @JsonProperty("name")
     public String getName() {
         return name;
@@ -413,7 +460,7 @@ public class Country {
         this.relevance = relevance;
         return this;
     }
-
+/*
     @JsonAnyGetter
     public Map<String, Object> getAdditionalProperties() {
         return this.additionalProperties;
@@ -427,7 +474,7 @@ public class Country {
     public Country withAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
         return this;
-    }
+    }*/
 
     @Override
     public String toString(){

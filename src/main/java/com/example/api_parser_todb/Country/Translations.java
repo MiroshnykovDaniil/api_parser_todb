@@ -26,8 +26,9 @@ public class Translations {
     private String ja;
     @JsonProperty("it")
     private String it;
+    /*
     @JsonIgnore
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+    private Map<String, Object> additionalProperties = new HashMap<String, Object>();*/
 
     @JsonProperty("de")
     public String getDe() {
@@ -103,7 +104,7 @@ public class Translations {
         this.it = it;
         return this;
     }
-
+/*
     @JsonAnyGetter
     public Map<String, Object> getAdditionalProperties() {
         return this.additionalProperties;
@@ -117,5 +118,5 @@ public class Translations {
     public Translations withAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
         return this;
-    }
+    }*/
 }
