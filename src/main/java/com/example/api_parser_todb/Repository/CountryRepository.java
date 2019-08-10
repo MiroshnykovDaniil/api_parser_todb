@@ -8,7 +8,8 @@ import java.util.List;
 public interface CountryRepository extends CrudRepository<Country, Long> {
     List<Country> findByName(String name);
     List<Country> findByNativeName(String name);
-
+    List<Country> findAll();
+    List<Country> findCountriesByNameContains(String name);
     @Override
     <S extends Country> S save(S s);
 }

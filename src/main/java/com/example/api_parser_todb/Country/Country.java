@@ -146,6 +146,10 @@ public class Country {
         return this;
     }
 
+    public Country(){
+
+    }
+
     @JsonProperty("topLevelDomain")
     public List<String> getTopLevelDomain() {
         return topLevelDomain;
@@ -478,6 +482,6 @@ public class Country {
 
     @Override
     public String toString(){
-        return name+" "+capital+" "+population;
+        return name;
     }
 }
