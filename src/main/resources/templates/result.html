@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>
+    <td>Country name:</td>
+    <td th:text="${result.getName()}"></td>
+</p>
+
+<p>
+<td>Capital:</td>
+<td th:text="${result.getCapital()}"></td>
+</p>
+
+<p>
+<td>Country top level domain:</td>
+<td th:text="${result.getTopLevelDomain()}"></td>
+</p>
+
+<p>
+<td>alpha2code:</td>
+<td th:text="${result.getAlpha2Code()}"></td>
+</p>
+
+<p>
+<td>alpha3 code:</td>
+<td th:text="${result.getAlpha3Code()}"></td>
+</p>
+
+<p>
+<td>Calling codes:</td>
+<td th:text="${result.getCallingCodes()}"></td>
+</p>
+
+<p>
+<td>Alt spellings:</td>
+<td th:text="${result.getAltSpellings()}"></td>
+</p>
+
+<p>
+<td>Region:</td>
+<td th:text="${result.getRegion()}"></td>
+</p>
+
+<p>
+<td>Subregion:</td>
+<td th:text="${result.getSubregion()}"></td>
+</p>
+
+<p>
+<td>Population:</td>
+<td th:text="${result.getPopulation()}"></td>
+</p>
+
+<p>
+<td>Lating:</td>
+<td th:text="${result.getLatlng()}"></td>
+</p>
+
+<p>
+<td>Denonym:</td>
+<td th:text="${result.getDemonym()}"></td>
+</p>
+
+<p>
+<td>Area:</td>
+<td th:text="${result.getArea()}"></td>
+</p>
+
+<p>
+<td>Gini:</td>
+<td th:text="${result.getGini()}"></td>
+</p>
+
+<p>
+<td>Timezones:</td>
+<td th:text="${result.getTimezones()}"></td>
+</p>
+
+<p>
+<td>Borders: </td>
+<td th:text="${result.getBorders()  }"></td>
+</p>
+
+<p>
+<td>Native name:</td>
+<td th:text="${result.getNativeName()   }"></td>
+</p>
+
+<p>
+<td>Numeric code:</td>
+<td th:text="${result.getNumericCode()}"></td>
+</p>
+
+<p>
+<td>Currencies:</td>
+<td th:text="${result.getCurrencies()}"></td>
+</p>
+
+<p>
+<td>Languages:</td>
+<td th:text="${result.getLanguages()}"></td>
+</p>
+
+<table>
+    <caption>Translations</caption>
+    <tr>
+        <th>DE</th>
+        <th>ES</th>
+        <th>FR</th>
+        <th>IT</th>
+        <th>JA</th>
+    </tr>
+    <tr>
+<td th:text="${translations.getDe()}"></td>
+<td th:text="${translations.getEs()}"></td>
+<td th:text="${translations.getFr()}"></td>
+<td th:text="${translations.getIt()}"></td>
+<td th:text="${translations.getJa()}"></td>
+    </tr>
+</table>
+
+<p>
+<td>Relevance:</td>
+<td th:text="${result.getRelevance()}"></td>
+</p>
+
+<a th:href="@{/find}">Find another country</a>
+</body>
+</html>
