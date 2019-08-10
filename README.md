@@ -4,7 +4,7 @@ Spring RESTfull app with db and parsing from public api
 This Java Spring web-application was made to get data about countries from 3rd party api.
 User can input country name in form. If we already have this country in database,we use JQuery to help user to input country name.
 It does not matter if we don't have country in database - at this case we are trying to find out about country in API.
-After we get country from api, we show it to out user, and save it to database for future usage.
+After we get country from api, we show it to user, and save it to database for future usage.
 
 Used technologies: Java language, Spring Framework, MySql Database, Hibernate Framework, Jackson lib, Unirest lib, JQuery,
 Thymeleaf template. (That's all I remembered)
